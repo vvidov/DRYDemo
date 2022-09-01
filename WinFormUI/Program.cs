@@ -1,0 +1,33 @@
+﻿using Autofac;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WinFormUI
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            var container = ContainerConfig.Configure();
+
+            //using (var scope = container.BeginLifetimeScope())
+            //{
+            //    Form mainForm = scope.Resolve<Dashboard>();
+
+            Application.Run(ContainerConfig.MainForm);
+            //}
+
+        }
+    }
+}

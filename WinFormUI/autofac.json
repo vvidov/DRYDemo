@@ -1,0 +1,30 @@
+{
+  "components": [
+    {
+      "type": "DRYDemoLibrary.FileLogger, DRYDemoLibrary",
+      "services": [
+        {
+          "type": "DRYDemoLibrary.ILogger, DRYDemoLibrary"
+        }
+      ]
+    },
+    {
+      "type": "DRYDemoLibrary.LoggerInterceptor, DRYDemoLibrary"
+    },
+    {
+      "type": "WinFormUI.Dashboard2, WinFormUI"
+    },
+  ],
+  "modules": [
+    {
+      "type": "DRYDemoLibrary.LoggerModule, DRYDemoLibrary",
+      "properties": {
+        "UseLogger": true,
+        "Processor": "DRYDemoLibrary.EmployeeSecondProcessor, DRYDemoLibrary",
+        "ProcessorInterface": "DRYDemoLibrary.IEmployeeProcessor, DRYDemoLibrary",
+        "LoggerInterceptor": "DRYDemoLibrary.LoggerInterceptor, DRYDemoLibrary",
+        "MainWin": "WinFormUI.Dashboard2, WinFormUI"
+      }
+    }
+  ]
+}
