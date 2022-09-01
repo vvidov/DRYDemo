@@ -1,7 +1,11 @@
 {
   "components": [
     {
-      "type": "DRYDemoLibrary.FileLogger, DRYDemoLibrary",
+      "type": "DRYDemoLibrary.MondLogger, DRYDemoLibrary",
+      "//type": "we have 3 Loggers, last one is above 'Cloud' on 'Moon'",
+      "//type 0": "DRYDemoLibrary.ConsoleLogger, DRYDemoLibrary",
+      "//type 1": "DRYDemoLibrary.FileLogger, DRYDemoLibrary",
+      "//type 2": "DRYDemoLibrary.MondLogger, DRYDemoLibrary",
       "services": [
         {
           "type": "DRYDemoLibrary.ILogger, DRYDemoLibrary"
@@ -12,7 +16,12 @@
       "type": "DRYDemoLibrary.LoggerInterceptor, DRYDemoLibrary"
     },
     {
-      "type": "WinFormUI.Dashboard2, WinFormUI"
+      "type": "WinFormUI.Dashboard2RUI, WinFormUI",
+      "//type": "we have 4 Forms",
+      "//type 0": "WinFormUI.Dashboard, WinFormUI",
+      "//type 1": "WinFormUI.Dashboard2, WinFormUI",
+      "//type 2": "WinFormUI.DashboardRUI, WinFormUI",
+      "//type 3": "WinFormUI.Dashboard2RUI, WinFormUI"
     },
   ],
   "modules": [
@@ -21,9 +30,17 @@
       "properties": {
         "UseLogger": true,
         "Processor": "DRYDemoLibrary.EmployeeSecondProcessor, DRYDemoLibrary",
+        "//Processor": "we have 2 processors",
+        "//Processor 0": "DRYDemoLibrary.EmployeeProcessor, DRYDemoLibrary",
+        "//Processor 1": "DRYDemoLibrary.EmployeeSecondProcessor, DRYDemoLibrary",
         "ProcessorInterface": "DRYDemoLibrary.IEmployeeProcessor, DRYDemoLibrary",
         "LoggerInterceptor": "DRYDemoLibrary.LoggerInterceptor, DRYDemoLibrary",
-        "MainWin": "WinFormUI.Dashboard2, WinFormUI"
+        "MainWin": "WinFormUI.Dashboard2RUI, WinFormUI",
+        "//MainWin": "Must be registered in [components] as type",
+        "//MainWin 0": "WinFormUI.Dashboard, WinFormUI",
+        "//MainWin 1": "WinFormUI.Dashboard2, WinFormUI",
+        "//MainWin 2": "WinFormUI.DashboardRUI, WinFormUI",
+        "//MainWin 3": "WinFormUI.Dashboard2RUI, WinFormUI"
       }
     }
   ]
