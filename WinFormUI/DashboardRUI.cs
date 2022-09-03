@@ -26,6 +26,7 @@ namespace WinFormUI
             this.Bind(VM, x => x.LastName, x => x.lastNameText.Text);
             this.Bind(VM, x => x.EmployeeId, x => x.employeeIdText.Text);
             this.BindCommand(VM, x => x.GenerateIdCmd, x => x.generateEmployeeIdButton);
+            this.BindCommand(VM, x => x.ClearCmd, x => x.btnClear);
 
         }
 

@@ -36,6 +36,7 @@
             this.generateEmployeeIdButton = new System.Windows.Forms.Button();
             this.employeeIdText = new System.Windows.Forms.TextBox();
             this.employeeIdLabel = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -82,9 +83,9 @@
             // 
             // generateEmployeeIdButton
             // 
-            this.generateEmployeeIdButton.Location = new System.Drawing.Point(80, 242);
+            this.generateEmployeeIdButton.Location = new System.Drawing.Point(80, 282);
             this.generateEmployeeIdButton.Name = "generateEmployeeIdButton";
-            this.generateEmployeeIdButton.Size = new System.Drawing.Size(282, 78);
+            this.generateEmployeeIdButton.Size = new System.Drawing.Size(282, 38);
             this.generateEmployeeIdButton.TabIndex = 5;
             this.generateEmployeeIdButton.Text = "Generate Employee ID";
             this.generateEmployeeIdButton.UseVisualStyleBackColor = true;
@@ -106,12 +107,22 @@
             this.employeeIdLabel.TabIndex = 6;
             this.employeeIdLabel.Text = "Employee ID:";
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(106, 241);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(282, 35);
+            this.btnClear.TabIndex = 9;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
             // Dashboard2RUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(495, 517);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.employeeIdText);
             this.Controls.Add(this.employeeIdLabel);
             this.Controls.Add(this.generateEmployeeIdButton);
@@ -139,6 +150,7 @@
         private System.Windows.Forms.Button generateEmployeeIdButton;
         private System.Windows.Forms.TextBox employeeIdText;
         private System.Windows.Forms.Label employeeIdLabel;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
