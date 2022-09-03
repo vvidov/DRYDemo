@@ -14,20 +14,22 @@ using WinFormUI.ViewModels;
 
 namespace WinFormUI
 {
-    public partial class Dashboard2RUI : Form, IViewFor<TestViewModel>
+    public partial class Dashboard2RUI : Form, IViewFor<PersonViewModel>
     {
         public Dashboard2RUI(IEmployeeProcessor processor)
         {
             InitializeComponent();
 
-            VM = new TestViewModel(processor);
+            VM = new PersonViewModel(processor);
 
             // Bind the view to the ReactiveUI viewmodel
-            this.Bind(VM, x => x.FirstName, x => x.firstNameText.Text);
-            this.Bind(VM, x => x.LastName, x => x.lastNameText.Text);
-            this.Bind(VM, x => x.EmployeeId, x => x.employeeIdText.Text);
-            this.BindCommand(VM, x => x.GenerateIdCmdWithMessage, x => x.generateEmployeeIdButton);
-            this.BindCommand(VM, x => x.ClearCmdWithMessage, x => x.btnClear);
+            this.Bind(VM, vm => vm.FirstName, v => v.firstNameText.Text);
+            this.Bind(VM, wm => wm.LastName, v => v.lastNameText.Text);
+            this.Bind(VM, wm => wm.EmployeeId, v => v.employeeIdText.Text);
+            this.Bind(VM, wm => wm.FullName, v => v.tbFullName.Text);
+
+            this.BindCommand(VM, wm => wm.GenerateIdCmdWithMessage, v => v.generateEmployeeIdButton);
+            this.BindCommand(VM, wm => wm.ClearCmdWithMessage, v => v.btnClear);
 
             this.WhenActivated(
             d =>
@@ -51,15 +53,15 @@ namespace WinFormUI
             return Task.FromResult(MessageBox.Show(input, "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
         }
 
-        public TestViewModel VM { get; set; }
+        public PersonViewModel VM { get; set; }
 
         object IViewFor.ViewModel
         {
             get { return VM; }
-            set { VM = (TestViewModel)value; }
+            set { VM = (PersonViewModel)value; }
         }
 
-        TestViewModel IViewFor<TestViewModel>.ViewModel
+        PersonViewModel IViewFor<PersonViewModel>.ViewModel
         {
             get { return VM; }
             set { VM = value; }

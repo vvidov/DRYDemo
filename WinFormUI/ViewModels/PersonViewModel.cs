@@ -11,18 +11,17 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormUI.ViewModels
 {
-    public class TestViewModel : ReactiveUI.ReactiveObject, ITestModel
+    public class PersonViewModel : ReactiveUI.ReactiveObject, IPersonModel
 
     {
-        private string firstName;
-        private string lastName;
-        private string employeeId;
+        private string _firstName;
+        private string _lastName;
+        private string _employeeId;
 
         private IEmployeeProcessor _processor;
-
-        public string FirstName { get => firstName; set => this.RaiseAndSetIfChanged(ref firstName, value); }
-        public string LastName { get => lastName; set => this.RaiseAndSetIfChanged(ref lastName, value); }
-        public string EmployeeId { get => employeeId; set => this.RaiseAndSetIfChanged(ref employeeId, value); }
+        public string FirstName { get => _firstName; set => this.RaiseAndSetIfChanged(ref _firstName, value); }
+        public string LastName { get => _lastName; set => this.RaiseAndSetIfChanged(ref _lastName, value); }
+        public string EmployeeId { get => _employeeId; set => this.RaiseAndSetIfChanged(ref _employeeId, value); }
 
         public ReactiveCommand GenerateIdCmd { get;}
         public ReactiveCommand GenerateIdCmdWithMessage { get; }
@@ -30,7 +29,11 @@ namespace WinFormUI.ViewModels
 
         public ReactiveCommand ClearCmd { get; }
         public ReactiveCommand ClearCmdWithMessage { get; }
-        public TestViewModel(IEmployeeProcessor processor)
+
+        readonly ObservableAsPropertyHelper<string> _fullName;
+        public string FullName => _fullName.Value;
+
+        public PersonViewModel(IEmployeeProcessor processor)
         {
             _processor = processor;
             GenerateIdCmd = ReactiveCommand.Create(GenerateId);
@@ -38,6 +41,9 @@ namespace WinFormUI.ViewModels
             ClearCmd = ReactiveCommand.Create(Clear, CanExecute());
             ClearCmdWithMessage = ReactiveCommand.CreateFromTask(ClearMess, CanExecute());
             Confirm = new Interaction<string, bool>();
+
+            _fullName = this.WhenAnyValue(x => x.FirstName, x => x.LastName, (fn, ln) => $"{fn} {ln}")
+                .ToProperty(this, x => x.FullName);
         }
 
         private IObservable<bool> CanExecute()
@@ -54,7 +60,7 @@ namespace WinFormUI.ViewModels
 
         private void GenerateId()
         {
-            EmployeeId = _processor.GenerateEmployeeID(firstName, lastName);
+            EmployeeId = _processor.GenerateEmployeeID(_firstName, _lastName);
         }
 
         public async Task GenerateIdMess()

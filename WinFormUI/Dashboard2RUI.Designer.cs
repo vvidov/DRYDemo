@@ -37,6 +37,8 @@
             this.employeeIdText = new System.Windows.Forms.TextBox();
             this.employeeIdLabel = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFullName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -109,12 +111,29 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(106, 241);
+            this.btnClear.Location = new System.Drawing.Point(133, 470);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(282, 35);
             this.btnClear.TabIndex = 9;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(39, 229);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 25);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Full Name:";
+            // 
+            // tbFullName
+            // 
+            this.tbFullName.Location = new System.Drawing.Point(170, 226);
+            this.tbFullName.Name = "tbFullName";
+            this.tbFullName.ReadOnly = true;
+            this.tbFullName.Size = new System.Drawing.Size(245, 31);
+            this.tbFullName.TabIndex = 11;
             // 
             // Dashboard2RUI
             // 
@@ -122,6 +141,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(495, 517);
+            this.Controls.Add(this.tbFullName);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.employeeIdText);
             this.Controls.Add(this.employeeIdLabel);
@@ -151,6 +172,8 @@
         private System.Windows.Forms.TextBox employeeIdText;
         private System.Windows.Forms.Label employeeIdLabel;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbFullName;
     }
 }
 

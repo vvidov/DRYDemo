@@ -13,13 +13,13 @@ using WinFormUI.ViewModels;
 
 namespace WinFormUI
 {
-    public partial class DashboardRUI : Form, IViewFor<TestViewModel>
+    public partial class DashboardRUI : Form, IViewFor<PersonViewModel>
     {
         public DashboardRUI(IEmployeeProcessor processor)
         {
             InitializeComponent();
 
-            VM = new TestViewModel(processor);
+            VM = new PersonViewModel(processor);
 
             // Bind the view to the ReactiveUI viewmodel
             this.Bind(VM, x => x.FirstName, x => x.firstNameText.Text);
@@ -30,15 +30,15 @@ namespace WinFormUI
 
         }
 
-        public TestViewModel VM { get; set; }
+        public PersonViewModel VM { get; set; }
 
         object IViewFor.ViewModel
         {
             get { return VM; }
-            set { VM = (TestViewModel)value; }
+            set { VM = (PersonViewModel)value; }
         }
 
-        TestViewModel IViewFor<TestViewModel>.ViewModel
+        PersonViewModel IViewFor<PersonViewModel>.ViewModel
         {
             get { return VM; }
             set { VM = value; }

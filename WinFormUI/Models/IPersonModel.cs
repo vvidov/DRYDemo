@@ -1,6 +1,6 @@
 ﻿namespace WinFormUI.Models
 {
-    public interface ITestModel
+    public interface IPersonModel
     {
         string FirstName { get; set; }
         string LastName { get; set; }
