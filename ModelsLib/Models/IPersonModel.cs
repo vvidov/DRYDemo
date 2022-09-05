@@ -1,4 +1,4 @@
-﻿namespace WinFormUI.Models
+﻿namespace ModelsLib.Models
 {
     public interface IPersonModel
     {

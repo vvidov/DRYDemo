@@ -112,9 +112,9 @@
       <Project>{2e52645e-67f9-4b1a-9d70-a2b3590b6bc8}</Project>
       <Name>DRYDemoLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WinFormUI\WinFormUI.csproj">
-      <Project>{F55C8414-FADF-449B-8D4A-08CC87C19F94}</Project>
-      <Name>WinFormUI</Name>
+    <ProjectReference Include="..\ModelsLib\ModelsLib.csproj">
+      <Project>{b8d68cdc-3a36-4dad-b4fe-41bd6f3107e2}</Project>
+      <Name>ModelsLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

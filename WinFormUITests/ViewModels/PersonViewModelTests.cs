@@ -1,13 +1,13 @@
-﻿using WinFormUI.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using DRYDemoLibrary;
+using ModelsLib.ViewModels;
 
-namespace WinFormUI.ViewModels.Tests
+namespace ModelsLib.ViewModels.Tests
 {
     public class PersonViewModelTests
     {

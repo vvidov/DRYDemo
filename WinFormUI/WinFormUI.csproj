@@ -207,10 +207,8 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\IPersonModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\PersonViewModel.cs" />
     <EmbeddedResource Include="Dashboard2RUI.resx">
       <DependentUpon>Dashboard2RUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +255,10 @@
     <ProjectReference Include="..\DRYDemoStandardLibrary\DRYDemoStandardLibrary.csproj">
       <Project>{41DC3F5B-EE34-4B90-82AE-C8EE47601124}</Project>
       <Name>DRYDemoStandardLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelsLib\ModelsLib.csproj">
+      <Project>{b8d68cdc-3a36-4dad-b4fe-41bd6f3107e2}</Project>
+      <Name>ModelsLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

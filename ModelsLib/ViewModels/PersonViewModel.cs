@@ -6,10 +6,10 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinFormUI.Models;
+using ModelsLib.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace WinFormUI.ViewModels
+namespace ModelsLib.ViewModels
 {
     public class PersonViewModel : ReactiveUI.ReactiveObject, IPersonModel
 
