@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DryDemoLibraryTest", "DryDe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DRYDemoStandardLibrary", "DRYDemoStandardLibrary\DRYDemoStandardLibrary.csproj", "{41DC3F5B-EE34-4B90-82AE-C8EE47601124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormUITests", "WinFormUITests\WinFormUITests.csproj", "{C63A5F4D-5B64-46A3-8793-BFC050D7A778}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelTests", "WinFormUITests\ViewModelTests.csproj", "{C63A5F4D-5B64-46A3-8793-BFC050D7A778}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelsLib", "ModelsLib\ModelsLib.csproj", "{B8D68CDC-3A36-4DAD-B4FE-41BD6F3107E2}"
 EndProject
