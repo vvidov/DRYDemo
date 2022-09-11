@@ -25,8 +25,8 @@ namespace WinFormUI
             // Bind the view to the ReactiveUI viewmodel
             this.Bind(VM, vm => vm.FirstName, v => v.firstNameText.Text);
             this.Bind(VM, wm => wm.LastName, v => v.lastNameText.Text);
-            this.Bind(VM, wm => wm.EmployeeId, v => v.employeeIdText.Text);
-            this.Bind(VM, wm => wm.FullName, v => v.tbFullName.Text);
+            this.OneWayBind(VM, wm => wm.EmployeeId, v => v.employeeIdText.Text);
+            this.OneWayBind(VM, wm => wm.FullName, v => v.tbFullName.Text);
 
             this.BindCommand(VM, wm => wm.GenerateIdCmdWithMessage, v => v.generateEmployeeIdButton);
             this.BindCommand(VM, wm => wm.ClearCmdWithMessage, v => v.btnClear);

@@ -45,6 +45,7 @@ namespace WPFUI
                 this.Bind(this.ViewModel, x => x.LastName, x => x.lastName.Text).DisposeWith(disposable);
                 this.OneWayBind(this.ViewModel, x => x.FullName, x => x.fullName.Text).DisposeWith(disposable);
                 this.OneWayBind(this.ViewModel, x => x.EmployeeId, x => x.employeeId.Text).DisposeWith(disposable);
+
                 this.BindCommand(ViewModel, x => x.GenerateIdCmdWithMessage, x => x.createEmployeeIdButton).DisposeWith(disposable);
                 this.BindCommand(ViewModel, x => x.ClearCmdWithMessage, x => x.clearButton).DisposeWith(disposable);
             });
