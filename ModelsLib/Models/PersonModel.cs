@@ -17,7 +17,9 @@ namespace ModelsLib.Models
         {
             _modelStorage = modelStorage;
         }
-
+        public PersonModel()//without param for XMl serialization
+        {
+        }
         public PersonModel Load()
         {
             return _modelStorage.Load<PersonModel>();

@@ -13,10 +13,13 @@
       ]
     },
     {
-      "type": "ModelsLib.Storage.JsonFileStorage, ModelsLib",
+      "type": "ModelsLib.Storage.XmlFileStorage, ModelsLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "//type 0": "we  have 2 IStorage implemented",
+      "//type 1": "ModelsLib.Storage.JsonFileStorage, ModelsLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "//type 2": "ModelsLib.Storage.XmlFileStorage, ModelsLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
       "services": [
         {
-          "type": "ModelsLib.Models.IModelStorage, ModelsLib"
+          "type": "ModelsLib.Models.IModelStorage, ModelsLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
         }
       ]
     },
