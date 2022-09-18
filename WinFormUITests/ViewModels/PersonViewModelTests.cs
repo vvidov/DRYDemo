@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using DRYDemoLibrary;
 using ModelsLib.ViewModels;
+using System.Windows.Forms;
 
 namespace ModelsLib.ViewModels.Tests
 {
@@ -13,13 +14,13 @@ namespace ModelsLib.ViewModels.Tests
     {
 
         [Theory]
-        [InlineData("Firstname", "LastName", true)]
-        public async Task GenerateIdMess_ShouldGenerate(string firstName, string lastName, bool generate)
+        [InlineData("Firstname", "LastName", DialogResult.Yes)]
+        public async Task GenerateIdMess_ShouldGenerate(string firstName, string lastName, DialogResult dlgResult)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
             var fixture = new PersonViewModel(processor);
             fixture.Confirm
-                .RegisterHandler(interaction => interaction.SetOutput(generate));
+                .RegisterHandler(interaction => interaction.SetOutput(dlgResult));
 
 
             fixture.FirstName = firstName;
@@ -35,13 +36,15 @@ namespace ModelsLib.ViewModels.Tests
         }
 
         [Theory]
-        [InlineData("Firstname", "LastName", false)]
-        public async Task GenerateIdMess_ShouldNotGenerate(string firstName, string lastName, bool generate)
+        [InlineData("Firstname", "LastName", DialogResult.Cancel)]
+        [InlineData("Firstname", "LastName", DialogResult.OK)]
+        [InlineData("Firstname", "LastName", DialogResult.No)]
+        public async Task GenerateIdMess_ShouldNotGenerate(string firstName, string lastName, DialogResult dlgResult)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
             var fixture = new PersonViewModel(processor);
             fixture.Confirm
-                .RegisterHandler(interaction => interaction.SetOutput(generate));
+                .RegisterHandler(interaction => interaction.SetOutput(dlgResult));
 
 
             fixture.FirstName = firstName;
@@ -56,13 +59,13 @@ namespace ModelsLib.ViewModels.Tests
         }
 
         [Theory]
-        [InlineData("Firstname", "LastName", true, true)]
-        public async Task ClearMess_ShouldClear(string firstName, string lastName, bool generate, bool clear)
+        [InlineData("Firstname", "LastName", DialogResult.Yes, DialogResult.Yes)]
+        public async Task ClearMess_ShouldClear(string firstName, string lastName, DialogResult dlgCreate, DialogResult dlgClear)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
             var fixture = new PersonViewModel(processor);
             fixture.Confirm
-                .RegisterHandler(interaction => interaction.SetOutput(generate));
+                .RegisterHandler(interaction => interaction.SetOutput(dlgCreate));
 
 
             fixture.FirstName = firstName;
@@ -71,7 +74,7 @@ namespace ModelsLib.ViewModels.Tests
             await fixture.GenerateIdMess();
 
             fixture.Confirm
-                .RegisterHandler(interaction => interaction.SetOutput(clear));
+                .RegisterHandler(interaction => interaction.SetOutput(dlgClear));
 
             await fixture.ClearMess();
 
@@ -81,13 +84,15 @@ namespace ModelsLib.ViewModels.Tests
         }
 
         [Theory]
-        [InlineData("Firstname", "LastName", true, false)]
-        public async Task ClearMess_ShouldNotClear(string firstName, string lastName, bool generate, bool clear)
+        [InlineData("Firstname", "LastName", DialogResult.Yes, DialogResult.No)]
+        [InlineData("Firstname", "LastName", DialogResult.Yes, DialogResult.Cancel)]
+        [InlineData("Firstname", "LastName", DialogResult.Yes, DialogResult.Ignore)]
+        public async Task ClearMess_ShouldNotClear(string firstName, string lastName, DialogResult dlgGenerate, DialogResult dlgClear)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
             var fixture = new PersonViewModel(processor);
             fixture.Confirm
-                .RegisterHandler(interaction => interaction.SetOutput(generate));
+                .RegisterHandler(interaction => interaction.SetOutput(dlgGenerate));
 
 
             fixture.FirstName = firstName;
@@ -97,7 +102,7 @@ namespace ModelsLib.ViewModels.Tests
 
             var Id = processor.GenerateEmployeeID(firstName, lastName);
             fixture.Confirm
-                .RegisterHandler(interaction => interaction.SetOutput(clear));
+                .RegisterHandler(interaction => interaction.SetOutput(dlgClear));
 
             await fixture.ClearMess();
 

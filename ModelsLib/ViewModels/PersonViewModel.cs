@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelsLib.Models;
+using System.Windows.Forms;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ModelsLib.ViewModels
@@ -25,7 +26,7 @@ namespace ModelsLib.ViewModels
 
         public ReactiveCommand GenerateIdCmd { get;}
         public ReactiveCommand GenerateIdCmdWithMessage { get; }
-        public Interaction<string, bool> Confirm;
+        public Interaction<MessageBoxInput, DialogResult> Confirm;
 
         public ReactiveCommand ClearCmd { get; }
         public ReactiveCommand ClearCmdWithMessage { get; }
@@ -40,7 +41,7 @@ namespace ModelsLib.ViewModels
             GenerateIdCmdWithMessage = ReactiveCommand.CreateFromTask(GenerateIdMess);
             ClearCmd = ReactiveCommand.Create(Clear, CanExecute());
             ClearCmdWithMessage = ReactiveCommand.CreateFromTask(ClearMess, CanExecute());
-            Confirm = new Interaction<string, bool>();
+            Confirm = new Interaction<MessageBoxInput, DialogResult>();
 
             _fullName = this.WhenAnyValue(x => x.FirstName, x => x.LastName, (fn, ln) => $"{fn} {ln}")
                 .ToProperty(this, x => x.FullName);
@@ -67,9 +68,9 @@ namespace ModelsLib.ViewModels
         {
             var message = "Generate new Emp ID?";
 
-            var answerYes = await Confirm.Handle(message);
+            var answer = await Confirm.Handle(new MessageBoxInput { Message = message});
 
-            if (answerYes)
+            if (answer == DialogResult.Yes)
                 GenerateId();
             else
                 EmployeeId = string.Empty;
@@ -78,9 +79,9 @@ namespace ModelsLib.ViewModels
         {
             var message = "Clear all?";
 
-            var answerYes = await Confirm.Handle(message);
+            var answer = await Confirm.Handle(new MessageBoxInput { Message = message});
 
-            if (answerYes)
+            if (answer == DialogResult.Yes)
                 Clear();
         }
     }

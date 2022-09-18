@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 using Di = System.Windows.MessageBox;
+using ModelsLib;
 
 namespace WPFUI
 {
@@ -66,9 +67,9 @@ namespace WPFUI
             });
         }
 
-        private Task<bool> DisplayAlert(string input)
+        private Task<DialogResult> DisplayAlert(MessageBoxInput messageBoxInput)
         {
-            return Task.FromResult(System.Windows.Forms.MessageBox.Show(input, "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes);
+            return Task.FromResult(System.Windows.Forms.MessageBox.Show(messageBoxInput.Message, messageBoxInput.Caption, messageBoxInput.Buttons, messageBoxInput.Icon));
         }
 
         public PersonViewModel ViewModel 

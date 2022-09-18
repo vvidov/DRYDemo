@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModelsLib.ViewModels;
+using ModelsLib;
 
 namespace WinFormUI
 {
@@ -48,9 +49,9 @@ namespace WinFormUI
             });
         }
 
-        private Task<bool> DisplayAlert(string input)
+        private Task<DialogResult> DisplayAlert(MessageBoxInput messageBoxInput)
         {
-            return Task.FromResult(MessageBox.Show(input, "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+            return Task.FromResult(MessageBox.Show(messageBoxInput.Message, messageBoxInput.Caption, messageBoxInput.Buttons, messageBoxInput.Icon));
         }
 
         public PersonViewModel VM { get; set; }
