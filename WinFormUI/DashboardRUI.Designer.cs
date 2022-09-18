@@ -37,6 +37,8 @@
             this.employeeIdText = new System.Windows.Forms.TextBox();
             this.employeeIdLabel = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -116,12 +118,32 @@
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(133, 414);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(282, 35);
+            this.btnLoad.TabIndex = 15;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(133, 455);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(282, 35);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
             // DashboardRUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(495, 517);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.employeeIdText);
             this.Controls.Add(this.employeeIdLabel);
@@ -151,6 +173,8 @@
         private System.Windows.Forms.TextBox employeeIdText;
         private System.Windows.Forms.Label employeeIdLabel;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

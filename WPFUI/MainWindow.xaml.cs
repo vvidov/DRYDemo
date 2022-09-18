@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 using Di = System.Windows.MessageBox;
 using ModelsLib;
+using ModelsLib.Models;
 
 namespace WPFUI
 {
@@ -30,12 +31,12 @@ namespace WPFUI
     {
         private IEmployeeProcessor _processor;
         public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(nameof(ViewModel), typeof(PersonViewModel), typeof(MainWindow));
-        public MainWindow(IEmployeeProcessor processor)
+        public MainWindow(IEmployeeProcessor processor, IModelStorage modelStorage)
         {
             InitializeComponent();
             _processor = processor;
 
-            ViewModel = new PersonViewModel(_processor);
+            ViewModel = new PersonViewModel(_processor, modelStorage);
 
             // Setup the bindings
             // Note: We have to use WhenActivated here, since we need to dispose the
@@ -49,6 +50,10 @@ namespace WPFUI
 
                 this.BindCommand(ViewModel, x => x.GenerateIdCmdWithMessage, x => x.createEmployeeIdButton).DisposeWith(disposable);
                 this.BindCommand(ViewModel, x => x.ClearCmdWithMessage, x => x.clearButton).DisposeWith(disposable);
+
+                this.BindCommand(ViewModel, wm => wm.LoadCmd, v => v.btnLoad);
+                this.BindCommand(ViewModel, wm => wm.SaveCmd, v => v.btnSave);
+
             });
             this.WhenActivated(d =>
             {

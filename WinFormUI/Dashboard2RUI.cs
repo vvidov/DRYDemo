@@ -12,16 +12,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModelsLib.ViewModels;
 using ModelsLib;
+using ModelsLib.Models;
 
 namespace WinFormUI
 {
     public partial class Dashboard2RUI : Form, IViewFor<PersonViewModel>
     {
-        public Dashboard2RUI(IEmployeeProcessor processor)
+        public Dashboard2RUI(IEmployeeProcessor processor, IModelStorage modelStorage)
         {
             InitializeComponent();
 
-            VM = new PersonViewModel(processor);
+            VM = new PersonViewModel(processor, modelStorage);
 
             // Bind the view to the ReactiveUI viewmodel
             this.Bind(VM, vm => vm.FirstName, v => v.firstNameText.Text);
@@ -31,6 +32,8 @@ namespace WinFormUI
 
             this.BindCommand(VM, wm => wm.GenerateIdCmdWithMessage, v => v.generateEmployeeIdButton);
             this.BindCommand(VM, wm => wm.ClearCmdWithMessage, v => v.btnClear);
+            this.BindCommand(VM, wm => wm.LoadCmd, v => v.btnLoad);
+            this.BindCommand(VM, wm => wm.SaveCmd, v => v.btnSave);
 
             this.WhenActivated(
             d =>

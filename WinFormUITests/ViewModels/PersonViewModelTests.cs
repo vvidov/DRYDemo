@@ -7,6 +7,8 @@ using Xunit;
 using DRYDemoLibrary;
 using ModelsLib.ViewModels;
 using System.Windows.Forms;
+using ModelsLib.Models;
+using ModelsLib.Storage;
 
 namespace ModelsLib.ViewModels.Tests
 {
@@ -18,7 +20,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task GenerateIdMess_ShouldGenerate(string firstName, string lastName, DialogResult dlgResult)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            var fixture = new PersonViewModel(processor);
+            IModelStorage storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgResult));
 
@@ -42,7 +45,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task GenerateIdMess_ShouldNotGenerate(string firstName, string lastName, DialogResult dlgResult)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            var fixture = new PersonViewModel(processor);
+            IModelStorage storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgResult));
 
@@ -63,7 +67,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task ClearMess_ShouldClear(string firstName, string lastName, DialogResult dlgCreate, DialogResult dlgClear)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            var fixture = new PersonViewModel(processor);
+            IModelStorage storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgCreate));
 
@@ -90,7 +95,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task ClearMess_ShouldNotClear(string firstName, string lastName, DialogResult dlgGenerate, DialogResult dlgClear)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            var fixture = new PersonViewModel(processor);
+            IModelStorage storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgGenerate));
 

@@ -252,10 +252,6 @@
       <Project>{2E52645E-67F9-4B1A-9D70-A2B3590B6BC8}</Project>
       <Name>DRYDemoLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DRYDemoStandardLibrary\DRYDemoStandardLibrary.csproj">
-      <Project>{41DC3F5B-EE34-4B90-82AE-C8EE47601124}</Project>
-      <Name>DRYDemoStandardLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModelsLib\ModelsLib.csproj">
       <Project>{b8d68cdc-3a36-4dad-b4fe-41bd6f3107e2}</Project>
       <Name>ModelsLib</Name>

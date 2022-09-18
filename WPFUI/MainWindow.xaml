@@ -26,6 +26,8 @@
                 <TextBlock x:Name="employeeId" Margin="5"  />
             </StackPanel>
             <Button x:Name="clearButton" Content="Clear" Margin="5" Padding="10" />
+            <Button x:Name="btnSave" Content="Save" Padding="10" />
+            <Button x:Name="btnLoad" Content="Load" Padding="10" />
         </StackPanel>
     </Grid>
 </Window>

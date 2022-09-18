@@ -39,6 +39,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbFullName = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -85,7 +87,7 @@
             // 
             // generateEmployeeIdButton
             // 
-            this.generateEmployeeIdButton.Location = new System.Drawing.Point(80, 282);
+            this.generateEmployeeIdButton.Location = new System.Drawing.Point(133, 281);
             this.generateEmployeeIdButton.Name = "generateEmployeeIdButton";
             this.generateEmployeeIdButton.Size = new System.Drawing.Size(282, 38);
             this.generateEmployeeIdButton.TabIndex = 5;
@@ -111,7 +113,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(133, 470);
+            this.btnClear.Location = new System.Drawing.Point(133, 401);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(282, 35);
             this.btnClear.TabIndex = 9;
@@ -135,12 +137,32 @@
             this.tbFullName.Size = new System.Drawing.Size(245, 31);
             this.tbFullName.TabIndex = 11;
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(133, 483);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(282, 35);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(133, 442);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(282, 35);
+            this.btnLoad.TabIndex = 13;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            // 
             // Dashboard2RUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(495, 517);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbFullName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
@@ -174,6 +196,8 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbFullName;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
 

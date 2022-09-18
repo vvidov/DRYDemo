@@ -13,6 +13,14 @@
       ]
     },
     {
+      "type": "ModelsLib.Storage.JsonFileStorage, ModelsLib",
+      "services": [
+        {
+          "type": "ModelsLib.Models.IModelStorage, ModelsLib"
+        }
+      ]
+    },
+    {
       "type": "DRYDemoLibrary.LoggerInterceptor, DRYDemoLibrary"
     },
     {
@@ -22,7 +30,7 @@
       "//type 1": "WinFormUI.Dashboard2, WinFormUI",
       "//type 2": "WinFormUI.DashboardRUI, WinFormUI",
       "//type 3": "WinFormUI.Dashboard2RUI, WinFormUI"
-    },
+    }
   ],
   "modules": [
     {

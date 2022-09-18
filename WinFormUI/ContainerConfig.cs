@@ -3,9 +3,12 @@ using Autofac.Configuration;
 using Autofac.Extras.DynamicProxy;
 using DRYDemoLibrary;
 using Microsoft.Extensions.Configuration;
+using ModelsLib.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +21,8 @@ namespace WinFormUI
         public static IContainer Configure()
         {
 
+            //Type t = typeof(IModelStorage);
+            //Debug.WriteLine(t.AssemblyQualifiedName);
             var config = new ConfigurationBuilder();
             // config.AddJsonFile comes from Microsoft.Extensions.Configuration.Json
             // config.AddXmlFile comes from Microsoft.Extensions.Configuration.Xml
