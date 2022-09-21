@@ -2,7 +2,7 @@
 
 Hi! The Idea of that repository is to show that old .net Framework like 4.7, WinForms and WPF can have a "modern" software  and manageable design. As prove of the concept and try a new things.
 
-For staring I use point is a [DRYDemo](https://www.youtube.com/watch?v=dhnsegiPXoo) from [Tim Corey](https://www.iamtimcorey.com/). Thank you Tim for free Videos and good examples, as you see at least one in use. Keep going:) that ist not an Ads. That Video and some others made me to create that place.
+For staring I use point is a [DRYDemo](https://www.youtube.com/watch?v=dhnsegiPXoo) from [Tim Corey](https://www.iamtimcorey.com/). Thank you Tim, for free Videos and good examples, as you see at least one in use. Keep going:) that ist not an Ads. That Video and some others made me to create that place.
 
 For me was not enough to have a small demo with one processor so I created a new one. Later I added [Autofac Container](https://autofac.org/) to it. So I can config my App by code(WPF app) and Json Config file(WinForms).
 With Autofac I have created LoggerInterceptor so I can easy extend my methods with Logging. I can activate it or switch between different loggers only by changing config container. I can change also starting point of WinForm app, I can choose between 4 Forms, 2 processors(please, forgive me the second one has not unit tests), I can activate Logging and select one of 3 implementations(the last one is on the Moon, sorry clouds are not too high as my goals, and not so stable to hold my logging:))
