@@ -51,8 +51,8 @@ namespace WPFUI
                 this.BindCommand(ViewModel, x => x.GenerateIdCmdWithMessage, x => x.createEmployeeIdButton).DisposeWith(disposable);
                 this.BindCommand(ViewModel, x => x.ClearCmdWithMessage, x => x.clearButton).DisposeWith(disposable);
 
-                this.BindCommand(ViewModel, wm => wm.LoadCmd, v => v.btnLoad);
-                this.BindCommand(ViewModel, wm => wm.SaveCmd, v => v.btnSave);
+                this.BindCommand(ViewModel, wm => wm.LoadCmd, v => v.btnLoad).DisposeWith(disposable);
+                this.BindCommand(ViewModel, wm => wm.SaveCmd, v => v.btnSave).DisposeWith(disposable);
 
             });
             this.WhenActivated(d =>

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using ModelsLib.ViewModels;
 using ModelsLib;
 using ModelsLib.Models;
+using System.Reactive.Disposables;
 
 namespace WinFormUI
 {
@@ -25,16 +26,18 @@ namespace WinFormUI
             VM = new PersonViewModel(processor, modelStorage);
 
             // Bind the view to the ReactiveUI viewmodel
-            this.Bind(VM, vm => vm.FirstName, v => v.firstNameText.Text);
-            this.Bind(VM, wm => wm.LastName, v => v.lastNameText.Text);
-            this.OneWayBind(VM, wm => wm.EmployeeId, v => v.employeeIdText.Text);
-            this.OneWayBind(VM, wm => wm.FullName, v => v.tbFullName.Text);
+            this.WhenActivated(disposable =>
+            {
+                this.Bind(VM, vm => vm.FirstName, v => v.firstNameText.Text).DisposeWith(disposable);
+                this.Bind(VM, wm => wm.LastName, v => v.lastNameText.Text).DisposeWith(disposable);
+                this.OneWayBind(VM, wm => wm.EmployeeId, v => v.employeeIdText.Text).DisposeWith(disposable);
+                this.OneWayBind(VM, wm => wm.FullName, v => v.tbFullName.Text).DisposeWith(disposable);
 
-            this.BindCommand(VM, wm => wm.GenerateIdCmdWithMessage, v => v.generateEmployeeIdButton);
-            this.BindCommand(VM, wm => wm.ClearCmdWithMessage, v => v.btnClear);
-            this.BindCommand(VM, wm => wm.LoadCmd, v => v.btnLoad);
-            this.BindCommand(VM, wm => wm.SaveCmd, v => v.btnSave);
-
+                this.BindCommand(VM, wm => wm.GenerateIdCmdWithMessage, v => v.generateEmployeeIdButton).DisposeWith(disposable);
+                this.BindCommand(VM, wm => wm.ClearCmdWithMessage, v => v.btnClear).DisposeWith(disposable);
+                this.BindCommand(VM, wm => wm.LoadCmd, v => v.btnLoad).DisposeWith(disposable);
+                this.BindCommand(VM, wm => wm.SaveCmd, v => v.btnSave).DisposeWith(disposable);
+            });
             this.WhenActivated(
             d =>
             {
