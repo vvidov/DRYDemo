@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace ModelsLib.Storage
 {
-    public class XmlFileStorage : IModelStorage
+    public class XmlFileStorage : ISave, ILoad
     {
         string fileName = nameof(XmlFileStorage) + ".xml";
         public T Load<T>()
@@ -22,7 +22,7 @@ namespace ModelsLib.Storage
                     return (T)ser.Deserialize(sr);
                 }
             }
-            catch(Exception ex )
+            catch(Exception)
             {
                 return default(T);
             }

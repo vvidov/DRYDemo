@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using DRYDemoLibrary;
+using ModelsLib;
 using ModelsLib.Models;
 using ModelsLib.Storage;
 using Splat;
@@ -18,13 +19,15 @@ namespace WinFormUI
         public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<ConsoleLogger>().As<DRYDemoLibrary.ILogger>();
-            builder.RegisterType<JsonFileStorage>().As<IModelStorage>();
+            builder.RegisterType<MondLogger>().As<DRYDemoLibrary.ILogger>();
             builder.RegisterType<LoggerInterceptor>();
             builder.RegisterType<MainWindow>();
+            builder.RegisterType<XmlFileStorage>().As<ISave>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggerInterceptor));
+            builder.RegisterType<XmlFileStorage>().As<ILoad>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggerInterceptor));
             builder.RegisterType<EmployeeSecondProcessor>().As<IEmployeeProcessor>()
                 .EnableInterfaceInterceptors().InterceptedBy(typeof(LoggerInterceptor));
-
             return builder.Build();
         }
     }

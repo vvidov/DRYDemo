@@ -12,7 +12,7 @@ using File = System.IO.File;
 
 namespace ModelsLib.Storage
 {
-    public sealed class JsonFileStorage : IModelStorage
+    public sealed class JsonFileStorage : ILoad, ISave
     {
         string fileName = nameof(JsonFileStorage) + ".Json";
         public T Load<T>()

@@ -36,10 +36,10 @@ namespace ModelsLib.ViewModels
         readonly ObservableAsPropertyHelper<string> _fullName;
         public string FullName => _fullName.Value;
 
-        public PersonViewModel(IEmployeeProcessor processor, IModelStorage modelStorage)
+        public PersonViewModel(IEmployeeProcessor processor, ISave modelSave, ILoad modelLoad)
         {
             _processor = processor;
-            Model = new PersonModel(modelStorage);
+            Model = new PersonModel(modelSave, modelLoad);
             GenerateIdCmd = ReactiveCommand.Create(GenerateId);
             GenerateIdCmdWithMessage = ReactiveCommand.CreateFromTask(GenerateIdMess);
             ClearCmd = ReactiveCommand.Create(Clear, CanExecute());

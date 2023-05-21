@@ -1,4 +1,5 @@
 ﻿using DRYDemoLibrary;
+using ModelsLib;
 using ModelsLib.Models;
 using ModelsLib.ViewModels;
 using ReactiveUI;
@@ -17,11 +18,11 @@ namespace WinFormUI
 {
     public partial class DashboardRUI : Form, IViewFor<PersonViewModel>
     {
-        public DashboardRUI(IEmployeeProcessor processor, IModelStorage modelStorage)
+        public DashboardRUI(IEmployeeProcessor processor, ISave modelSave, ILoad modelLoad)
         {
             InitializeComponent();
 
-            VM = new PersonViewModel(processor, modelStorage);
+            VM = new PersonViewModel(processor, modelSave, modelLoad);
 
             // Bind the view to the ReactiveUI viewmodel
             this.WhenActivated(disposable =>

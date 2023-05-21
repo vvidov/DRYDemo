@@ -21,12 +21,10 @@ namespace WinFormUI
 
             var container = ContainerConfig.Configure();
 
-            //using (var scope = container.BeginLifetimeScope())
-            //{
-            //    Form mainForm = scope.Resolve<Dashboard>();
-
-            Application.Run(ContainerConfig.MainForm);
-            //}
+            using (var scope = container.BeginLifetimeScope())
+            {
+                Application.Run(ContainerConfig.MainForm);
+            }
 
         }
     }

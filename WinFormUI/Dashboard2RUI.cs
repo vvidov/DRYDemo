@@ -19,11 +19,11 @@ namespace WinFormUI
 {
     public partial class Dashboard2RUI : Form, IViewFor<PersonViewModel>
     {
-        public Dashboard2RUI(IEmployeeProcessor processor, IModelStorage modelStorage)
+        public Dashboard2RUI(IEmployeeProcessor processor, ISave modelSave, ILoad modelLoad)
         {
             InitializeComponent();
 
-            VM = new PersonViewModel(processor, modelStorage);
+            VM = new PersonViewModel(processor, modelSave, modelLoad);
 
             // Bind the view to the ReactiveUI viewmodel
             this.WhenActivated(disposable =>

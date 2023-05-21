@@ -31,12 +31,12 @@ namespace WPFUI
     {
         private IEmployeeProcessor _processor;
         public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(nameof(ViewModel), typeof(PersonViewModel), typeof(MainWindow));
-        public MainWindow(IEmployeeProcessor processor, IModelStorage modelStorage)
+        public MainWindow(IEmployeeProcessor processor, ISave modelSave, ILoad modelLoad)
         {
             InitializeComponent();
             _processor = processor;
 
-            ViewModel = new PersonViewModel(_processor, modelStorage);
+            ViewModel = new PersonViewModel(_processor, modelSave, modelLoad);
 
             // Setup the bindings
             // Note: We have to use WhenActivated here, since we need to dispose the

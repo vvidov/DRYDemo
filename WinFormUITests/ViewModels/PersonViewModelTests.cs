@@ -20,8 +20,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task GenerateIdMess_ShouldGenerate(string firstName, string lastName, DialogResult dlgResult)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            IModelStorage storage = new JsonFileStorage();
-            var fixture = new PersonViewModel(processor, storage);
+            var storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgResult));
 
@@ -45,8 +45,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task GenerateIdMess_ShouldNotGenerate(string firstName, string lastName, DialogResult dlgResult)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            IModelStorage storage = new JsonFileStorage();
-            var fixture = new PersonViewModel(processor, storage);
+            var storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgResult));
 
@@ -55,7 +55,6 @@ namespace ModelsLib.ViewModels.Tests
             fixture.LastName = lastName;
 
             await fixture.GenerateIdMess();
-
 
             Assert.Equal(firstName, fixture.FirstName);
             Assert.Equal(lastName, fixture.LastName);
@@ -67,8 +66,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task ClearMess_ShouldClear(string firstName, string lastName, DialogResult dlgCreate, DialogResult dlgClear)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            IModelStorage storage = new JsonFileStorage();
-            var fixture = new PersonViewModel(processor, storage);
+            var storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgCreate));
 
@@ -95,8 +94,8 @@ namespace ModelsLib.ViewModels.Tests
         public async Task ClearMess_ShouldNotClear(string firstName, string lastName, DialogResult dlgGenerate, DialogResult dlgClear)
         {
             IEmployeeProcessor processor = new EmployeeProcessor();
-            IModelStorage storage = new JsonFileStorage();
-            var fixture = new PersonViewModel(processor, storage);
+            var storage = new JsonFileStorage();
+            var fixture = new PersonViewModel(processor, storage, storage);
             fixture.Confirm
                 .RegisterHandler(interaction => interaction.SetOutput(dlgGenerate));
 

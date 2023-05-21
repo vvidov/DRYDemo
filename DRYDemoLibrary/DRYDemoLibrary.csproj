@@ -82,7 +82,6 @@
     <Compile Include="FileLogger.cs" />
     <Compile Include="ConsoleLogger.cs" />
     <Compile Include="LoggerInterceptor.cs" />
-    <Compile Include="LoggerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
