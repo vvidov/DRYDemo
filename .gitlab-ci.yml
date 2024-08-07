@@ -9,7 +9,7 @@
 # (located in gitlab-runner.exe directory):
 #   shell = "powershell"
 #
-# The script is composed of 3 stages: build, test and deploy.
+# The script is composed of 3 stages: build, test and deploy.  
 #
 # The build stage restores NuGet packages and uses msbuild to build the exe and msi
 # One major issue you'll find is that you can't build msi projects from command line
