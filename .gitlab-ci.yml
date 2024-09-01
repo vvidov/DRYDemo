@@ -1,26 +1,23 @@
-#image: mcr.microsoft.com/dotnet/sdk:6.0
-
-stages:
-  - build
-  - test
-  - release
+variables:
+  SOLUTION_FILE: "DRYDemo.sln"
 
 build:
   stage: build
   script:
-    - dotnet build
+    - 'nuget restore $SOLUTION_FILE'
+    - 'msbuild $SOLUTION_FILE /p:Configuration=Release'
+  artifacts:
+    paths:
+      - '**/bin/**/Release'
 
 test:
   stage: test
   script:
-    - dotnet test
+    - 'vstest.console.exe **/bin/**/Release/*.Tests.dll'
 
-release:
-  stage: release
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying your application..."
   only:
     - master
-  artifacts:
-    paths:
-      - publish/
-  script:
-    - dotnet publish -c Release -o ../publish MyApp/MyApp.csproj
