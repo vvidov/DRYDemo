@@ -13,7 +13,7 @@ build:
 test:
   stage: test
   script:
-    - 'vstest.console.exe **/bin/**/Release/*Tests.dll'
+    - 'vstest.console.exe **/bin/**/Release/*Test*.dll'
 
 deploy:
   stage: deploy
