@@ -1,0 +1,23 @@
+variables:
+  SOLUTION_FILE: "DRYDemo.sln"
+
+build:
+  stage: build
+  script:
+    - 'nuget restore $SOLUTION_FILE'
+    - 'msbuild $SOLUTION_FILE /p:Configuration=Release'
+  artifacts:
+    paths:
+      - '**/bin/**/Release'
+
+test:
+  stage: test
+  script:
+    - 'vstest.console.exe **/bin/**/Release/*Test*.dll'
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying your application..."
+  only:
+    - master
