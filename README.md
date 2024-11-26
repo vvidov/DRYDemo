@@ -1,27 +1,168 @@
-# Welcome to my Playground!
+# DRY Demo - Modern Architecture with .NET Framework
 
-Hi! The Idea of that repository is to show that old .net Framework like 4.7, WinForms and WPF can have a "modern" software  and manageable design. As prove of the concept and try a new things.
+This repository demonstrates how to implement modern software architecture and design patterns using .NET Framework 4.7, WinForms, and WPF. It serves as a proof of concept that legacy frameworks can support clean, maintainable, and extensible code design.
 
-For staring I use point is a [DRYDemo](https://www.youtube.com/watch?v=dhnsegiPXoo) from [Tim Corey](https://www.iamtimcorey.com/). Thank you Tim, for free Videos and good examples, as you see at least one in use. Keep going:) that ist not an Ads. That Video and some others made me to create that place.
+## Project Overview
 
-For me was not enough to have a small demo with one processor so I created a new one. Later I added [Autofac Container](https://autofac.org/) to it. So I can config my App by code(WPF app) and Json Config file(WinForms).
-With Autofac I have created LoggerInterceptor so I can easy extend my methods with Logging. I can activate it or switch between different loggers only by changing config container. I can change also starting point of WinForm app, I can choose between 4 Forms, 2 processors(please, forgive me the second one has not unit tests), I can activate Logging and select one of 3 implementations(the last one is on the Moon, sorry clouds are not too high as my goals, and not so stable to hold my logging:))
-Next I added  MVVM:) and [ReactiveUI](https://www.reactiveui.net/) to apps. My Veiws contains only binding and ModelView. There is one more method to display messages to user and introduce some interaction with him. There are Unit tests for ViewModel and I can test everything(all business logic is in VM). For Model I have implemented 2 file storage(Json and XML). I use the same ViewModel also for WPF app(also contains only bindings, and VM and user DisplayMessage, no code behind:)). To all that I can config 2 storages for Models.
-I can also extend any of 2 app with other types of **logging**, **storage**, **processors** and **views**, **without touching any exiting code**. I just have to implement new code, test it with unit tests, if it is ready, I can add it to config container and make a new configuration. That is it. 
+The project showcases various modern software development practices and patterns:
 
-When to expect to be updated with new things. That is the question. That is playground and will stay so.
-If I have time, mood and an idea I will try to make it:)
+- **Multiple UI Frameworks**: Both WinForms and WPF implementations sharing the same business logic
+- **MVVM Pattern**: Clean separation of concerns with ViewModels shared between UI frameworks
+- **Dependency Injection**: Using Autofac for flexible configuration and loose coupling
+- **Multiple Storage Options**: Configurable storage mechanisms (JSON/XML)
+- **Advanced Logging**: Cross-cutting logging implementation using interceptors
+- **Clean Architecture**: Interface-based design with proper separation of concerns
 
-What will come next:
- - convert View to control and use it in other windows and show
-   master detail content 
- - add some modern design to Winforms and WPF
- - try to use the same ViewModel in another app stack
- - improve and update constantly document:)
- 
- There a some many thing to play with. 
- As we see  software and world are full of opportunities. And we must take any of them. 
- Do not forget, that an error is always an option. That you can explore it and learn a lot.
- I do not like to reinvent the wheel, but I enjoy riding the bicycle.
+## Architecture Diagrams
 
-Keep playing:)
+### Component Architecture
+```mermaid
+graph TB
+    subgraph UI["UI Layer"]
+        WPF["WPFUI<br/>(ReactiveUI)"]
+        WF["WinFormUI<br/>(Modern Practices)"]
+    end
+    
+    subgraph BL["Business Logic"]
+        VM["ViewModels"]
+        EP["Employee Processors"]
+        LI["Logger Interceptor"]
+    end
+    
+    subgraph Data["Data Layer"]
+        JS["JSON Storage"]
+        XS["XML Storage"]
+        M["Models"]
+    end
+    
+    WPF --> VM
+    WF --> VM
+    VM --> EP
+    EP --> M
+    M --> JS
+    M --> XS
+    EP -.-> LI
+    M -.-> LI
+    
+    style UI fill:#f9f,stroke:#333,stroke-width:2px
+    style BL fill:#bbf,stroke:#333,stroke-width:2px
+    style Data fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+### Dependency Injection Flow
+```mermaid
+graph LR
+    AC["Autofac Container"] --> |Configures| UI["UI Components"]
+    AC --> |Configures| BP["Business Processors"]
+    AC --> |Configures| ST["Storage"]
+    AC --> |Configures| LOG["Logging"]
+    
+    subgraph Configuration
+        CF["Code Config<br/>(WPF)"]
+        JF["JSON Config<br/>(WinForms)"]
+    end
+    
+    CF --> AC
+    JF --> AC
+    
+    style AC fill:#f96,stroke:#333,stroke-width:2px
+    style Configuration fill:#ff9,stroke:#333,stroke-width:2px
+```
+
+### MVVM Implementation
+```mermaid
+graph LR
+    subgraph WPF["WPF Application"]
+        WV["WPF View"] --> |Bindings| VM["ViewModel"]
+    end
+    
+    subgraph WinForms["WinForms Application"]
+        WFV["WinForms View"] --> |Bindings| VM
+    end
+    
+    VM --> |Updates| M["Model"]
+    M --> |Notifies| VM
+    
+    style WPF fill:#f9f,stroke:#333,stroke-width:2px
+    style WinForms fill:#bbf,stroke:#333,stroke-width:2px
+    style VM fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+## Project Structure
+
+- **DRYDemoLibrary**: Core business logic and interfaces
+- **ModelsLib**: Data models and storage implementations
+- **WPFUI**: WPF implementation using ReactiveUI
+- **WinFormUI**: WinForms implementation with modern practices
+- **DryDemoLibraryTest**: Unit tests for the business logic
+
+## Key Features
+
+### 1. Flexible Configuration
+- Configure application behavior through code or JSON
+- Swap between different storage mechanisms
+- Choose between multiple UI implementations
+- Configure logging behavior
+
+### 2. Advanced Logging
+- Logging through interceptors using Autofac.Extras.DynamicProxy
+- Multiple logger implementations (Console, File)
+- Configurable logging behavior per component
+
+### 3. Storage Options
+- JSON file storage
+- XML file storage
+- Easily extendable for new storage types
+
+### 4. Modern UI Implementations
+- WPF with ReactiveUI
+- WinForms with modern practices
+- Shared ViewModels between frameworks
+- Clean separation of UI and business logic
+
+## Getting Started
+
+1. Clone the repository
+2. Open the solution in Visual Studio
+3. Build the solution
+4. Choose either the WinForms or WPF project as your startup project
+5. Run the application
+
+## Configuration
+
+The application can be configured through:
+- Code-based configuration in the respective UI projects
+- JSON configuration file for the WinForms application
+- XML configuration options available
+
+## Architecture Highlights
+
+- **SOLID Principles**: The project strictly follows SOLID design principles
+- **DRY (Don't Repeat Yourself)**: Common logic is shared across implementations
+- **Interface-Based Design**: All major components are interface-based for flexibility
+- **Cross-Cutting Concerns**: Handled elegantly through interceptors
+- **Clean Architecture**: Proper separation of concerns and dependencies
+
+## Future Enhancements
+
+- Convert Views to reusable controls
+- Implement master-detail content views
+- Modern UI design updates for both frameworks
+- Additional UI framework implementations
+- Continuous documentation improvements
+
+## Contributing
+
+Feel free to contribute to this project by:
+- Submitting bug reports
+- Proposing new features
+- Creating pull requests
+- Improving documentation
+
+## Acknowledgments
+
+Special thanks to [Tim Corey](https://www.iamtimcorey.com/) for the initial inspiration through his DRY demo video.
+
+## License
+
+This project is open source and available under the MIT License.
