@@ -85,7 +85,7 @@
             // 
             // generateEmployeeIdButton
             // 
-            this.generateEmployeeIdButton.Location = new System.Drawing.Point(80, 292);
+            this.generateEmployeeIdButton.Location = new System.Drawing.Point(133, 292);
             this.generateEmployeeIdButton.Name = "generateEmployeeIdButton";
             this.generateEmployeeIdButton.Size = new System.Drawing.Size(282, 35);
             this.generateEmployeeIdButton.TabIndex = 5;
@@ -111,7 +111,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(106, 241);
+            this.btnClear.Location = new System.Drawing.Point(133, 238);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(282, 35);
             this.btnClear.TabIndex = 8;
