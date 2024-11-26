@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Autofac.Core;
 using Autofac.Core.Registration;
 using Autofac.Extras.DynamicProxy;
@@ -6,7 +6,6 @@ using DRYDemoLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace WinFormUI
 {
