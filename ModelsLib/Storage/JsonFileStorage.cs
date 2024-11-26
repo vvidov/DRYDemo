@@ -1,42 +1,60 @@
-﻿using ModelsLib.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using static System.Net.WebRequestMethods;
-using File = System.IO.File;
 
 namespace ModelsLib.Storage
 {
-    public sealed class JsonFileStorage : ILoad, ISave
+    public class JsonFileStorage : ISave, ILoad
     {
-        string fileName = nameof(JsonFileStorage) + ".Json";
+        private readonly string fileName;
+
+        public JsonFileStorage(string filename = "data.json")
+        {
+            fileName = filename;
+        }
+
         public T Load<T>()
         {
             try
             {
-                using (StreamReader file = File.OpenText(fileName))
+                if (!File.Exists(fileName))
+                    return default(T);
+
+                using (var file = File.OpenText(fileName))
                 {
-                    JsonSerializer serializer = new JsonSerializer();
+                    var serializer = new JsonSerializer
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto,
+                        NullValueHandling = NullValueHandling.Ignore
+                    };
                     return (T)serializer.Deserialize(file, typeof(T));
                 }
             }
-            catch
-            { 
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading JSON file: {ex.Message}");
                 return default(T);
             }
         }
 
         public void Save<T>(T obj)
         {
-            using (StreamWriter file = File.CreateText(fileName))
+            try
             {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, obj);
+                using (var file = File.CreateText(fileName))
+                {
+                    var serializer = new JsonSerializer
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto,
+                        NullValueHandling = NullValueHandling.Ignore,
+                        Formatting = Formatting.Indented
+                    };
+                    serializer.Serialize(file, obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving to JSON file: {ex.Message}");
             }
         }
     }

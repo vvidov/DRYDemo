@@ -1,37 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DRYDemoLibrary
 {
     public class EmployeeSecondProcessor : IEmployeeProcessor
     {
-        public string GenerateEmployeeID(string firstName, string lastName)
-        {
-            if (firstName.EndsWith("123"))
-            {
-                var zero = 0;
-                var asd = 123 / zero;
-            }
-            string employeeId = $@"{GetPartOfName(lastName, 4)}_{GetPartOfName(firstName, 4)}_{DateTime.Now.Millisecond}";
-            return employeeId;
-        }
-
-        public string GenerateEmployeeID2(string firstName, string lastName)
-        {
-            if (firstName.EndsWith("123"))
-            {
-                var zero = 0;
-                var asd = 123 / zero;
-            }
-            string employeeId = $@"{GetPartOfName(lastName, 4)}_{GetPartOfName(firstName, 4)}_{DateTime.Now.Millisecond}";
-            return employeeId;
-        }
-
         private string GetPartOfName(string name, int numberOfCharacters)
         {
+            if (string.IsNullOrEmpty(name))
+                return new string('Y', numberOfCharacters);
+
             string output = name;
 
             if (name.Length > numberOfCharacters)
@@ -40,13 +18,35 @@ namespace DRYDemoLibrary
             }
             else
             {
-                do
+                while (output.Length < numberOfCharacters)
                 {
                     output += "Y";
-                } while (output.Length < 4);
+                }
             }
 
             return output;
+        }
+
+        public string GenerateEmployeeID(string firstName, string lastName)
+        {
+            // Test method for logging interceptor
+            if (firstName.EndsWith("123"))
+            {
+                throw new DivideByZeroException("Test exception for logging");
+            }
+
+            return $"{GetPartOfName(lastName, 4)}_{GetPartOfName(firstName, 4)}_{DateTime.Now.Millisecond}";
+        }
+
+        public string GenerateEmployeeID2(string firstName, string lastName)
+        {
+            // Test method for logging interceptor
+            if (firstName.EndsWith("123"))
+            {
+                throw new DivideByZeroException("Test exception for logging");
+            }
+
+            return $"{GetPartOfName(lastName, 4)}_{GetPartOfName(firstName, 4)}_{DateTime.Now.Millisecond}";
         }
     }
 }
