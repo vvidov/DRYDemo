@@ -54,12 +54,20 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+      with:
+        nuget-version: '5.x'
+
+    - name: Restore NuGet packages
+      run: nuget restore DRYDemo.sln
         
-    - name: Restore
-      run: dotnet restore
-      
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: msbuild DRYDemo.sln /p:Configuration=Release
       
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: dotnet test DRYDemo.sln --configuration Release --no-build --verbosity normal
